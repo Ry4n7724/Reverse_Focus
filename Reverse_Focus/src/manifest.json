@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Reverse Focus",
+  "description": "Google extension to focus on the real tasks.",
+  "version": "1.0",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "host_permissions": ["<all_urls>"]
+}
