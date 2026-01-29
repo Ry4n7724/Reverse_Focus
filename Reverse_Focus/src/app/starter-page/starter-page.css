@@ -2,4 +2,91 @@ hgroup {
     display: flex;
     align-items: center;
     gap: 1rem;
+    color: var(--tui-text-01);
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background: var(--tui-background-base);
+}
+
+.seperator {
+    padding: 1rem;
+}
+
+tui-tiles {
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    gap: 0.5rem
+}
+
+.tile {
+    background: var(--tui-background-elevated-1);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--tui-border-normal);
+    transition: all 0.2s ease;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tile-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.tile-text {
+    font-size: 1rem;
+    color: var(--tui-text-01);
+    padding: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.tile-left {
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.tile-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--tui-text-03);
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.tile-delete:hover {
+    color: var(--tui-status-negative);
+}
+
+.tile-done {
+    text-decoration: line-through;
+    color: var(--tui-text-03);
+    opacity: 0.4;
 }

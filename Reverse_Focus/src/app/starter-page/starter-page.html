@@ -1,6 +1,25 @@
-<hgroup>
-    <tui-icon icon="@tui.step-back" [style.color]="'var(--tui-background-accent-1)'"></tui-icon>
-    <h1>Focus</h1>
-</hgroup> <button tuiButton appearance="primary">
-    Click me
-</button>
+<div class="container">
+    <hgroup>
+        <tui-icon icon="@tui.step-back" [style.color]="'var(--tui-background-accent-1)'"></tui-icon>
+        <h1>Focus</h1>
+    </hgroup>
+    <app-template-form [fields]="fields" [formTitle]="formTitle" [methode]="saveTask"></app-template-form>
+    <div class="seperator"></div>
+
+    <tui-tiles [(order)]="order">
+        @for (task of tasks; track task.id) {
+        <tui-tile class="tile">
+            <div class="tile-content" [ngClass]="{ 'tile-done': task.done }">
+                <div class="tile-left">
+                    <input tuiCheckbox class="tile-checkbox" type="checkbox" [ngModel]="task.done"
+                        (change)="toggleTaskDone(task.id, task.done)" />
+                    <span class="tile-text">{{task.task}}</span>
+                </div>
+                <button class="tile-delete" (click)="deleteTask(task.id)" type="button" title="Delete task">
+                    <tui-icon icon="@tui.trash"></tui-icon>
+                </button>
+            </div>
+        </tui-tile>
+        }
+    </tui-tiles>
+</div>

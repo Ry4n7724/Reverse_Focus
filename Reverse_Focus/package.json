@@ -39,6 +39,8 @@
     "@taiga-ui/icons": "^4.67.0",
     "@taiga-ui/kit": "^4.67.0",
     "@taiga-ui/layout": "^4.67.0",
+    "@types/chrome": "^0.1.36",
+    "dexie": "^4.2.1",
     "less": "^4.5.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
