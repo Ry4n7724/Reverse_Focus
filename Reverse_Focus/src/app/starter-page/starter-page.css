@@ -1,11 +1,3 @@
-hgroup {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: var(--tui-text-01);
-    margin-bottom: 1rem;
-}
-
 h1 {
     font-size: 2rem;
     font-weight: 600;
@@ -16,7 +8,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding: 2rem;
+    padding: 1rem;
     background: var(--tui-background-base);
 }
 
@@ -25,13 +17,13 @@ h1 {
 }
 
 tui-tiles {
-    width: 90%;
+    width: 80%;
     max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-items: center;
-    gap: 0.5rem
+    gap: 0.5rem;
 }
 
 .tile {

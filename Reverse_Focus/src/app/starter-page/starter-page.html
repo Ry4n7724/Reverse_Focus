@@ -1,11 +1,6 @@
 <div class="container">
-    <hgroup>
-        <tui-icon icon="@tui.step-back" [style.color]="'var(--tui-background-accent-1)'"></tui-icon>
-        <h1>Focus</h1>
-    </hgroup>
     <app-template-form [fields]="fields" [formTitle]="formTitle" [methode]="saveTask"></app-template-form>
     <div class="seperator"></div>
-
     <tui-tiles [(order)]="order">
         @for (task of tasks; track task.id) {
         <tui-tile class="tile">
