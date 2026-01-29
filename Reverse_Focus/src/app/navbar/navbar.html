@@ -1,0 +1,7 @@
+<nav class="navbar">
+    <hgroup class="navbar-brand">
+        <tui-icon icon="@tui.step-back" [style.color]="'var(--tui-background-accent-1)'" />
+        <h1>Focus</h1>
+    </hgroup>
+    <tui-icon [icon]=" darkMode() ? '@tui.moon' : '@tui.sun'" (click)="darkMode.set(!darkMode())" />
+</nav>
