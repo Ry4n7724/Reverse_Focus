@@ -20,6 +20,7 @@ export class StarterPage implements OnInit {
     name: 'task', label: 'Task', type: 'textfield'
   }]
   taskService = inject(TaskService)
+  protected order = new Map<number, number>()
   tasks: Task[] = []
   cdr = inject(ChangeDetectorRef)
 
