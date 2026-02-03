@@ -5,9 +5,6 @@ import Task from "./task";
 
 
 export class TaskDB extends Dexie {
-    addTask(task: any) {
-        throw new Error('Method not implemented.');
-    }
     taskDB!: EntityTable<Task, "id">
 
     constructor() {

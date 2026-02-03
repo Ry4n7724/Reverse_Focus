@@ -6,5 +6,5 @@ export type FieldConfig = {
     placeholder?: string
     type: string,
     value?: any
-    validator: Validators
+    validator?: Validators
 }
