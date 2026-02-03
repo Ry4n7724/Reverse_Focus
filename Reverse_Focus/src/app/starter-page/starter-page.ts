@@ -17,10 +17,9 @@ import { TuiCheckbox, TuiTile, TuiTilesComponent } from "@taiga-ui/kit";
 export class StarterPage implements OnInit {
   formTitle = 'To Do'
   fields: FieldConfig[] = [{
-    name: 'task', label: 'Task', type: 'textfield', validator: Validators.required,
+    name: 'task', label: 'Task', type: 'textfield'
   }]
   taskService = inject(TaskService)
-  protected order = new Map<number, number>()
   tasks: Task[] = []
   cdr = inject(ChangeDetectorRef)
 

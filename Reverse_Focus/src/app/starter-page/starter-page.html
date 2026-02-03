@@ -1,7 +1,7 @@
 <div class="container">
     <app-template-form [fields]="fields" [formTitle]="formTitle" [methode]="saveTask"></app-template-form>
     <div class="seperator"></div>
-    <tui-tiles [(order)]="order">
+    <tui-tiles>
         @for (task of tasks; track task.id) {
         <tui-tile class="tile">
             <div class="tile-content" [ngClass]="{ 'tile-done': task.done }">
