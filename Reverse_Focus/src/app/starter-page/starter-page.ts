@@ -39,7 +39,7 @@ export class StarterPage implements OnInit {
     this.loadTasks()
   }
   saveTask = (form: FormGroup) => {
-    if (form.valid) {
+    if (form.value.task.trim() !== '') {
       this.taskService.addTask(form.value.task);
       form.reset();
       this.loadTasks()
