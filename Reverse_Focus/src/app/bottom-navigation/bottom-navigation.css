@@ -7,20 +7,18 @@
 }
 
 .bottom-nav {
-    position: relative;
-    left: 0;
-    right: 0;
-    bottom: 0;
     height: var(--bottom-nav-height);
     display: flex;
     justify-content: space-around;
     align-items: center;
     background: var(--nav-bg);
     border-top: 1px solid var(--nav-border);
-    box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.06);
     width: 100%;
-    z-index: 1000;
+    flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
 }
+
 
 .nav-item {
     color: var(--nav-color);
@@ -36,7 +34,7 @@
 }
 
 .nav-item:focus,
-.nav-item:hover {
+.nav-item:hover .nav-item:active {
     background: rgba(43, 108, 255, 0.06);
     color: var(--nav-accent);
     transform: translateY(-2px);
