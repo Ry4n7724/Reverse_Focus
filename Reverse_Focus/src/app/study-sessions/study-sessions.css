@@ -10,6 +10,7 @@ h2 {
 
 .chips {
     margin: 0.25rem;
+    cursor: pointer;
 }
 
 
