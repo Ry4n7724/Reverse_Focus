@@ -7,4 +7,5 @@ export type FieldConfig = {
     type: string,
     value?: any
     validator?: Validators
+    subInputs?: FieldConfig[]
 }

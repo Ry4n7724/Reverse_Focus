@@ -3,13 +3,29 @@
         <h2 tuiAppearance="title">{{formTitle()}}</h2>
     </header>
     @for (field of fields(); track field.name) {
+
     @if(field.type === 'textfield'){
+
     <tui-textfield>
         <label tuiLabel>{{field.label}}</label>
         <input [formControlName]="field.name" [placeholder]="field.placeholder ?? ''" tuiTextfield maxlength="30" />
         <tui-icon icon="@tui.step-forward" (click)="methode()(form)"></tui-icon>
     </tui-textfield>
     <tui-error [formControlName]="field.name" [error]="[] | tuiFieldError | async" />
+    }@else if(field.type === 'icon-picker'){
+    <app-icon-picker [formControlName]="field.name"></app-icon-picker>
+
+    }@else if (field.type === 'inputWithIconPicker') {
+
+    <div class="inputWithIconPicker">
+        <tui-textfield>
+            <label tuiLabel>{{field.label}}</label>
+            <input [formControlName]="field.name" [placeholder]="field.placeholder ?? ''" tuiTextfield maxlength="30" />
+            <tui-icon icon="@tui.step-forward" (click)="methode()(form)"></tui-icon>
+        </tui-textfield>
+        <tui-error [formControlName]="field.name" [error]="[] | tuiFieldError | async" />
+        <app-icon-picker [formControlName]="field.subInputs?.[0]?.name ?? 'default'"></app-icon-picker>
+    </div>
     }
     }
 </form>

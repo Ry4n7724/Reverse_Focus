@@ -42,6 +42,7 @@
     "@types/chrome": "^0.1.36",
     "dexie": "^4.2.1",
     "less": "^4.5.1",
+    "lucide-angular": "^0.563.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
