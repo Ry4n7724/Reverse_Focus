@@ -33,6 +33,7 @@ export class TemplateForm implements OnInit {
         }
       }
     }
+    console.log(this.form.value) //{sessionName: 'hkkjhjk', icon: '', url: ''}
 
   }
 }

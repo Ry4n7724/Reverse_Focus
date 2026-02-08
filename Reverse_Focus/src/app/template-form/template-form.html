@@ -13,7 +13,6 @@
     </tui-textfield>
     <tui-error [formControlName]="field.name" [error]="[] | tuiFieldError | async" />
     }@else if(field.type === 'icon-picker'){
-    <app-icon-picker [formControlName]="field.name"></app-icon-picker>
 
     }@else if (field.type === 'inputWithIconPicker') {
 
@@ -24,7 +23,10 @@
             <tui-icon icon="@tui.step-forward" (click)="methode()(form)"></tui-icon>
         </tui-textfield>
         <tui-error [formControlName]="field.name" [error]="[] | tuiFieldError | async" />
-        <app-icon-picker [formControlName]="field.subInputs?.[0]?.name ?? 'default'"></app-icon-picker>
+        @for (subInput of field.subInputs; track subInput.name) {
+        <app-icon-picker [formControlName]="subInput.name" [iconValue]="subInput.value"
+            ngDefaultControl></app-icon-picker>
+        }
     </div>
     }
     }

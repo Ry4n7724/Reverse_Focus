@@ -14,8 +14,8 @@ export class CreateSessionPage {
   formTitle = 'Create Session';
   fields: FieldConfig[] = [
     {
-      name: 'name', label: 'Session Name', type: 'inputWithIconPicker',
-      subInputs: [{ name: 'icon', label: 'Session Icon', type: 'icon-picker' }]
+      name: 'sessionName', label: 'Session Name', type: 'inputWithIconPicker',
+      subInputs: [{ name: 'icon', label: 'Session Icon', type: 'icon-picker', value: 'book' }]
     },
     { name: 'url', label: 'Add URL', type: 'textfield' }
   ]

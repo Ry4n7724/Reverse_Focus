@@ -1,11 +1,12 @@
-<button tuiButton [tuiDropdown]="dropdownContent" [tuiDropdownManual]="open()" (click)="onClick()">
-    <lucide-icon [name]="icon" class="lucide-icon-button"></lucide-icon>
+<button tuiButton tuiChevron type="button" [tuiDropdown]="dropdownContent" [(tuiDropdownOpen)]="open">
+    <lucide-icon [name]="iconValue()" class="lucide-icon-button"></lucide-icon>
 </button>
+
 <ng-template #dropdownContent>
     <tui-data-list>
         <div class="icon-grid">
             @for (possibleIcon of iconList; track possibleIcon) {
-            <lucide-icon [name]="possibleIcon" (click)="selectIcon(possibleIcon)"></lucide-icon>
+            <lucide-icon tuiOption (click)="selectIcon(possibleIcon)" [name]="possibleIcon"></lucide-icon>
             }
         </div>
     </tui-data-list>

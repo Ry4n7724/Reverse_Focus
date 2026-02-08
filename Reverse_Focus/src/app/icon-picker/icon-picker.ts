@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, input, model, signal } from '@angular/core';
+import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
 import { TuiButton, TuiDataListComponent, TuiDropdown } from "@taiga-ui/core";
 import { icons, LucideAngularModule } from 'lucide-angular';
+import { TuiChevron } from "@taiga-ui/kit";
 
 
 @Component({
@@ -16,20 +17,32 @@ import { icons, LucideAngularModule } from 'lucide-angular';
     TuiButton,
     TuiDropdown,
     TuiDataListComponent,
-    LucideAngularModule
+    LucideAngularModule,
+    TuiChevron
   ],
 })
-export class IconPicker {
-  icon = 'book';
+export class IconPicker implements ControlValueAccessor {
+  iconValue = model.required<string>();
   iconList: string[] = Object.keys(icons);
   open = signal(false);
+  onChange: any = () => { };
+  onTouched: any = () => { };
 
-  selectIcon(icon: string) {
-    this.icon = icon;
+  selectIcon(newIcon: string) {
+    this.iconValue.set(newIcon);
+    this.onChange(newIcon);
+    this.onTouched();
   }
 
-  onClick(): void {
-    this.open.update((open) => !open);
+  writeValue(obj: any): void {
+    this.iconValue.set(obj)
   }
 
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
 }
