@@ -17,15 +17,16 @@
     }@else if (field.type === 'inputWithIconPicker') {
 
     <div class="inputWithIconPicker">
-        <tui-textfield>
-            <label tuiLabel>{{field.label}}</label>
-            <input [formControlName]="field.name" [placeholder]="field.placeholder ?? ''" tuiTextfield maxlength="30" />
-            <tui-icon icon="@tui.step-forward" (click)="methode()(form)"></tui-icon>
-        </tui-textfield>
-        <tui-error [formControlName]="field.name" [error]="[] | tuiFieldError | async" />
+        <div class="InputIcon">
+            <tui-textfield>
+                <label tuiLabel>{{field.label}}</label>
+                <input [formControlName]="field.name" [placeholder]="field.placeholder ?? ''" tuiTextfield
+                    maxlength="30" />
+            </tui-textfield>
+            <tui-error [formControlName]="field.name" [error]="[] | tuiFieldError | async" />
+        </div>
         @for (subInput of field.subInputs; track subInput.name) {
-        <app-icon-picker [formControlName]="subInput.name" [iconValue]="subInput.value"
-            ngDefaultControl></app-icon-picker>
+        <app-icon-picker [formControlName]="subInput.name"></app-icon-picker>
         }
     </div>
     }

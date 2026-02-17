@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { FormGroup, FormsModule } from '@angular/forms';
 import { TuiIcon } from "@taiga-ui/core";
 import { TuiCheckbox, TuiTile, TuiTilesComponent } from "@taiga-ui/kit";
@@ -22,23 +22,22 @@ export class Todo implements OnInit {
   }]
   taskService = inject(TaskService)
   protected order = new Map<number, number>()
-  tasks: Task[] = []
-  cdr = inject(ChangeDetectorRef)
+  tasks = signal<Task[]>([])
 
   ngOnInit() {
     this.loadTasks()
   }
 
   async loadTasks() {
-    this.tasks = await this.taskService.getTasks();
-    this.tasks.reverse();
-    this.cdr.detectChanges()
+    this.tasks.set(await this.taskService.getTasks());
+    this.tasks().reverse();
   }
 
   toggleTaskDone(id: number, state: boolean) {
     this.taskService.updateTask(id, { done: !state });
     this.loadTasks()
   }
+
   saveTask = (form: FormGroup) => {
     if (form.value.task.trim() !== '') {
       this.taskService.addTask(form.value.task);
@@ -52,5 +51,4 @@ export class Todo implements OnInit {
     this.taskService.deleteTask(taskId);
     this.loadTasks();
   }
-
 }

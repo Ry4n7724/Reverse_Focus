@@ -1,5 +1,5 @@
 <button tuiButton tuiChevron type="button" [tuiDropdown]="dropdownContent" [(tuiDropdownOpen)]="open">
-    <lucide-icon [name]="iconValue()" class="lucide-icon-button"></lucide-icon>
+    <lucide-icon [name]="iconValue() ?? 'book'" class="lucide-icon-button"></lucide-icon>
 </button>
 
 <ng-template #dropdownContent>

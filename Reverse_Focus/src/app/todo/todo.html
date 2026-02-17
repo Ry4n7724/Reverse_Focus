@@ -2,7 +2,7 @@
     <app-template-form [fields]="fields" [formTitle]="formTitle" [methode]="saveTask"></app-template-form>
     <div class="tiles-scroll tiles-scroll--border">
         <tui-tiles>
-            @for (task of tasks; track task.id) {
+            @for (task of tasks(); track task.id) {
             <tui-tile class="tile">
                 <div class="tile-content" [ngClass]="{ 'tile-done': task.done }">
                     <div class="tile-left">
