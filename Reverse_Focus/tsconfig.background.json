@@ -1,0 +1,11 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./dist/Reverse_Focus",
+        "module": "ESNext",
+        "target": "ES2020"
+    },
+    "include": [
+        "src/background.ts"
+    ]
+}
