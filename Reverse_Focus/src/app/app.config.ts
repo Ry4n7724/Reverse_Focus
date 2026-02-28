@@ -4,12 +4,11 @@ import { provideRouter, withHashLocation } from '@angular/router';
 
 import { routes } from './app.routes';
 import { icons, LucideAngularModule } from "lucide-angular";
-import { APP_BASE_HREF } from "@angular/common";
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideBrowserGlobalErrorListeners(),
-        provideRouter(routes),
+        provideRouter(routes, withHashLocation()),
         provideEventPlugins(),
         importProvidersFrom(
             LucideAngularModule.pick(icons)
