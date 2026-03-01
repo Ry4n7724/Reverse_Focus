@@ -1,4 +1,7 @@
-<tui-root [attr.tuiTheme]="darkMode() ? 'dark' : null">
-  <app-navbar></app-navbar>
-  <router-outlet />
+<tui-root [attr.tuiTheme]="darkMode() ? 'dark' : 'light'">
+  <div class="app-container">
+    <app-navbar></app-navbar>
+    <router-outlet />
+    <app-bottom-navigation></app-bottom-navigation>
+  </div>
 </tui-root>

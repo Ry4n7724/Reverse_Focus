@@ -1,25 +1,4 @@
 <div class="container">
-    <app-template-form [fields]="fields" [formTitle]="formTitle" [methode]="saveTask"></app-template-form>
-    <div class="seperator"></div>
-    <div class="tiles-scroll tiles-scroll--border">
-        <tui-tiles>
-            @for (task of tasks; track task.id) {
-            <tui-tile class="tile">
-                <div class="tile-content" [ngClass]="{ 'tile-done': task.done }">
-                    <div class="tile-left">
-                        <input tuiCheckbox class="tile-checkbox" type="checkbox" [ngModel]="task.done"
-                            (change)="toggleTaskDone(task.id, task.done)" />
-                        <span class="tile-text">{{task.task}}</span>
-                    </div>
-                    <button class="tile-delete" (click)="deleteTask(task.id)" type="button" title="Delete task">
-                        <tui-icon icon="@tui.trash"></tui-icon>
-                    </button>
-                </div>
-            </tui-tile>
-            } @empty {
-            <tui-tile class="tile">
-                <div class="tile-centered"><span class="tile-text">No tasks yet</span></div>
-            </tui-tile>
-            }
-        </tui-tiles>
-    </div>
+    <app-todo></app-todo>
+    <app-study-sessions></app-study-sessions>
+</div>

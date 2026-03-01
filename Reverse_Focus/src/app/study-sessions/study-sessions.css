@@ -1,0 +1,40 @@
+h2 {
+    margin: 0;
+}
+
+.study-sessions-container {
+    border: 1px solid var(--tui-border-normal);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.chips {
+    margin: 0.25rem;
+}
+
+
+
+.active-chip {
+    --glow-color: 80, 108, 205;
+    box-shadow: 0 0 8px rgba(var(--glow-color), 0.45), 0 0 20px rgba(var(--glow-color), 0.18);
+    transition: box-shadow 220ms ease, transform 160ms ease;
+    transform: translateZ(0);
+    animation: chip-glow 2.4s ease-in-out infinite;
+    background: var(--tui-background-elevated-1);
+    border: 1px solid var(--tui-border-normal);
+    color: var(--tui-text-01);
+}
+
+@keyframes chip-glow {
+    0% {
+        box-shadow: 0 0 4px rgba(var(--glow-color), 0.32), 0 0 10px rgba(var(--glow-color), 0.12);
+    }
+
+    50% {
+        box-shadow: 0 0 10px rgba(var(--glow-color), 0.48), 0 0 26px rgba(var(--glow-color), 0.16);
+    }
+
+    100% {
+        box-shadow: 0 0 4px rgba(var(--glow-color), 0.32), 0 0 10px rgba(var(--glow-color), 0.12);
+    }
+}

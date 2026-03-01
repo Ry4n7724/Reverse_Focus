@@ -1,54 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiIcon } from '@taiga-ui/core';
-import { TemplateForm } from "../template-form/template-form";
-import { FieldConfig } from '../template-form/field-config';
-import { TaskService } from '../database/task-service';
-import Task from '../database/task';
-import { TuiCheckbox, TuiTile, TuiTilesComponent } from "@taiga-ui/kit";
+import { Component } from '@angular/core';
+import { StudySessions } from "../study-sessions/study-sessions";
+import { Todo } from "../todo/todo";
 
 @Component({
   selector: 'app-starter-page',
-  imports: [TuiIcon, ReactiveFormsModule, CommonModule, TemplateForm, TuiTile, TuiTilesComponent, TuiCheckbox, FormsModule],
+  imports: [StudySessions, Todo],
   templateUrl: './starter-page.html',
   styleUrl: './starter-page.css'
 })
-export class StarterPage implements OnInit {
-  formTitle = 'To Do'
-  fields: FieldConfig[] = [{
-    name: 'task', label: 'Task', type: 'textfield'
-  }]
-  taskService = inject(TaskService)
-  protected order = new Map<number, number>()
-  tasks: Task[] = []
-  cdr = inject(ChangeDetectorRef)
+export class StarterPage {
 
-  ngOnInit() {
-    this.loadTasks()
-  }
-
-  async loadTasks() {
-    this.tasks = await this.taskService.getTasks();
-    this.tasks.reverse();
-    this.cdr.detectChanges()
-  }
-
-  toggleTaskDone(id: number, state: boolean) {
-    this.taskService.updateTask(id, { done: !state });
-    this.loadTasks()
-  }
-  saveTask = (form: FormGroup) => {
-    if (form.value.task.trim() !== '') {
-      this.taskService.addTask(form.value.task);
-      form.reset();
-      this.loadTasks()
-    }
-  };
-
-
-  deleteTask(taskId: number) {
-    this.taskService.deleteTask(taskId);
-    this.loadTasks();
-  }
 }

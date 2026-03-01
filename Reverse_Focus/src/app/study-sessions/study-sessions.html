@@ -1,0 +1,9 @@
+<section class="study-sessions-container">
+    <h2>Study Sessions</h2>
+    <div class="sessions">
+        @for(session of sessions; track session.id){
+        <span tuiChip iconStart="@tui.book" class="chips" [ngClass]="{'active-chip' : session.active}"
+            (click)="activateSession(session.id)">{{session.name}}</span>
+        }
+    </div>
+</section>
