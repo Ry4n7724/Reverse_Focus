@@ -1,4 +1,4 @@
-import { db } from "./shared/session-db";
+import { db } from "./app/session-database/session-db";
 
 chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
     if (details.frameId !== 0) return;

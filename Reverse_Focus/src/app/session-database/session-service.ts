@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { db } from "../../shared/session-db";
+import { db } from "./session-db";
 
 @Injectable({ providedIn: 'root' })
 export class SessionService {
