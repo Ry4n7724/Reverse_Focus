@@ -25,6 +25,11 @@ h2 {
     overflow: hidden;
 }
 
+.chips {
+    margin: 0.25rem;
+    cursor: pointer;
+}
+
 .active-chip {
     --glow-color: 80, 108, 205;
     box-shadow: 0 0 8px rgba(var(--glow-color), 0.45), 0 0 20px rgba(var(--glow-color), 0.18);
