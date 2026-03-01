@@ -7,9 +7,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    padding: 1rem;
-    background: var(--tui-background-base);
+    height: 100%;
 }
 
 .seperator {
@@ -17,13 +15,37 @@ h1 {
 }
 
 tui-tiles {
-    width: 80%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-items: center;
     gap: 0.5rem;
+}
+
+.tiles-scroll {
+    width: 80%;
+    max-width: 600px;
+    max-height: 200px;
+    box-sizing: border-box;
+    border: 1px solid var(--tui-border-normal);
+    border-radius: 0.5rem;
+    background: var(--tui-background-elevated-1);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.tile-centered {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--tui-text-03);
+    font-size: 1rem;
 }
 
 .tile {
@@ -32,8 +54,6 @@ tui-tiles {
     padding: 1.5rem;
     border: 1px solid var(--tui-border-normal);
     transition: all 0.2s ease;
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,7 +64,6 @@ tui-tiles {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: 100%;
 }
 
 .tile-text {
