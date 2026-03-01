@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build && npm run build:background",
-    "build:background": "tsc -p tsconfig.background.json",
+    "build:background": "esbuild src/background.ts --bundle --outfile=dist/Reverse_Focus/background.js --platform=browser --target=chrome120 --format=iife",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -51,6 +51,7 @@
     "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^21.0.0",
     "@types/chrome": "^0.1.36",
+    "esbuild": "^0.27.3",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
