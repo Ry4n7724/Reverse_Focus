@@ -3,9 +3,11 @@
     "compilerOptions": {
         "outDir": "./dist/Reverse_Focus",
         "module": "ESNext",
+        "moduleResolution": "node",
         "target": "ES2020"
     },
     "include": [
-        "src/background.ts"
+        "src/background.ts",
+        "src/shared/**/*.ts"
     ]
 }
