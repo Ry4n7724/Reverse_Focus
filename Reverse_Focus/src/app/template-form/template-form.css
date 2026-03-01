@@ -8,3 +8,13 @@ form {
     gap: 0.5rem;
     min-width: 300px;
 }
+
+tui-textfield {
+    width: 100%;
+}
+
+.inputWithIconPicker {
+    display: flex;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}

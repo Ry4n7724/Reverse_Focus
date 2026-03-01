@@ -1,9 +1,8 @@
-import { TuiRoot } from "@taiga-ui/core";
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Navbar } from "./navbar/navbar";
-import { TUI_DARK_MODE, TUI_DARK_MODE_KEY } from '@taiga-ui/core';
+import { TUI_DARK_MODE, TuiRoot } from "@taiga-ui/core";
 import { BottomNavigation } from "./bottom-navigation/bottom-navigation";
+import { Navbar } from "./navbar/navbar";
 
 @Component({
   selector: 'app-root',
