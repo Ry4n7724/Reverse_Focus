@@ -3,5 +3,8 @@ h2 {
 }
 
 form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     min-width: 300px;
 }
