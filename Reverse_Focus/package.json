@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && npm run build:background",
+    "build:background": "esbuild src/background.ts --bundle --outfile=dist/Reverse_Focus/background.js --platform=browser --target=chrome120 --format=iife",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -39,8 +40,7 @@
     "@taiga-ui/icons": "^4.67.0",
     "@taiga-ui/kit": "^4.67.0",
     "@taiga-ui/layout": "^4.67.0",
-    "@types/chrome": "^0.1.36",
-    "dexie": "^4.2.1",
+    "dexie": "^4.3.0",
     "less": "^4.5.1",
     "lucide-angular": "^0.563.0",
     "rxjs": "~7.8.0",
@@ -50,6 +50,8 @@
     "@angular/build": "^21.0.4",
     "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^21.0.0",
+    "@types/chrome": "^0.1.36",
+    "esbuild": "^0.27.3",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"

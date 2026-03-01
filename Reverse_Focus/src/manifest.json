@@ -8,5 +8,14 @@
   },
   "host_permissions": [
     "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "tabs",
+    "webNavigation"
   ]
 }

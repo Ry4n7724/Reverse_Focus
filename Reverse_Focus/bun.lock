@@ -21,8 +21,7 @@
         "@taiga-ui/icons": "^4.67.0",
         "@taiga-ui/kit": "^4.67.0",
         "@taiga-ui/layout": "^4.67.0",
-        "@types/chrome": "^0.1.36",
-        "dexie": "^4.2.1",
+        "dexie": "^4.3.0",
         "less": "^4.5.1",
         "lucide-angular": "^0.563.0",
         "rxjs": "~7.8.0",
@@ -32,6 +31,7 @@
         "@angular/build": "^21.0.4",
         "@angular/cli": "^21.0.4",
         "@angular/compiler-cli": "^21.0.0",
+        "@types/chrome": "^0.1.36",
         "jsdom": "^27.1.0",
         "typescript": "~5.9.2",
         "vitest": "^4.0.8",
@@ -683,7 +683,7 @@
 
     "detect-libc": ["detect-libc@2.1.2", "", {}, "sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ=="],
 
-    "dexie": ["dexie@4.2.1", "", {}, "sha512-Ckej0NS6jxQ4Po3OrSQBFddayRhTCic2DoCAG5zacOfOVB9P2Q5Xc5uL/nVa7ZVs+HdMnvUPzLFCB/JwpB6Csg=="],
+    "dexie": ["dexie@4.3.0", "", {}, "sha512-5EeoQpJvMKHe6zWt/FSIIuRa3CWlZeIl6zKXt+Lz7BU6RoRRLgX9dZEynRfXrkLcldKYCBiz7xekTEylnie1Ug=="],
 
     "dom-serializer": ["dom-serializer@2.0.0", "", { "dependencies": { "domelementtype": "^2.3.0", "domhandler": "^5.0.2", "entities": "^4.2.0" } }, "sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg=="],
 
