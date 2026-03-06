@@ -8,15 +8,10 @@
 
     <div class="quote-box">
         <p class="quote">
-            "Replace this text with a motivational or mindfulness quote."
+            {{ quote()?.q }}
         </p>
         <p class="author">
-            — Quote Author
+            — {{ quote()?.a }}
         </p>
     </div>
-
-    <div class="footer">
-        Stay focused • Stay calm
-    </div>
-
 </div>

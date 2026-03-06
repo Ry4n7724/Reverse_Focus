@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { Quote, QuotesService } from '../quotes-service/quotes-service';
 
 @Component({
   selector: 'app-website-blocker',
@@ -8,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WebsiteBlocker implements OnInit {
 
-  quote = signal('');
+  quote = signal<Quote | null>(null);
+  quoteService = inject(QuotesService);
 
-  ngOnInit() {
-
+  async ngOnInit() {
+    const quote = (await this.quoteService.getQuote())[0];
+    console.log('Hello World');
+    console.log(quote);
+    this.quote.set(quote);
   }
 
 }
