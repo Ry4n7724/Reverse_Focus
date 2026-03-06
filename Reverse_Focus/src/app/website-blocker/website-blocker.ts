@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-website-blocker',
@@ -6,6 +6,12 @@ import { Component } from '@angular/core';
   templateUrl: './website-blocker.html',
   styleUrl: './website-blocker.css',
 })
-export class WebsiteBlocker {
+export class WebsiteBlocker implements OnInit {
+
+  quote = signal('');
+
+  ngOnInit() {
+
+  }
 
 }
