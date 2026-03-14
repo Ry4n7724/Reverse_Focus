@@ -10,5 +10,34 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 42px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.quote-box {
+    border-left: 3px solid #9bb8b2;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.quote {
+    font-size: 18px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.author {
+    font-size: 14px;
+    opacity: 0.7;
 }

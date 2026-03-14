@@ -1,6 +1,17 @@
 <div class="container">
-    <div>
-        <h1>This Website is Blocked
-        </h1>
+
+    <h1>Website Blocked</h1>
+
+    <p class="subtitle">
+        Take a breath. This page was intentionally paused.
+    </p>
+
+    <div class="quote-box">
+        <p class="quote">
+            {{ quote()?.q }}
+        </p>
+        <p class="author">
+            — {{ quote()?.a }}
+        </p>
     </div>
 </div>
