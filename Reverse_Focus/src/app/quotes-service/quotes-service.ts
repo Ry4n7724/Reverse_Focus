@@ -11,7 +11,7 @@ export class QuotesService {
   http = inject(HttpClient);
 
   getQuote() {
-    return firstValueFrom(this.http.get<Quote[]>('/quote'));
+    return firstValueFrom(this.http.get<Quote[]>('https://zenquotes.io/api/random'));
   }
 
 }
