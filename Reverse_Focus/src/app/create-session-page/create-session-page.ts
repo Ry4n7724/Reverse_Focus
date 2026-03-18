@@ -20,7 +20,7 @@ export class CreateSessionPage {
       name: 'sessionName', label: 'Session Name', type: 'inputWithIconPicker', validator: Validators.required,
       subInputs: [{ name: 'icon', label: 'Session Icon', type: 'icon-picker', value: 'book' }]
     },
-    { name: 'urlList', label: 'Add URLs', type: 'urlsInput', value: [], placeholder: 'url1,url2,...', subInputs: [{ name: 'url', label: 'URL', type: 'textfield', value: '' }] },
+    { name: 'urlList', label: 'Add URLs', type: 'urlsInput', value: [], placeholder: 'url1,url2,...' },
   ]
 
   saveSession = (form: FormGroup) => {
