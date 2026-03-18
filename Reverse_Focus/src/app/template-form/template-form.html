@@ -12,8 +12,6 @@
         <tui-icon icon="@tui.step-forward" (click)="methode()(form)"></tui-icon>
     </tui-textfield>
     <tui-error [formControlName]="field.name" [error]="[] | tuiFieldError | async" />
-    }@else if(field.type === 'icon-picker'){
-
     }@else if (field.type === 'inputWithIconPicker') {
 
     <div class="inputWithIconPicker">
@@ -29,6 +27,24 @@
         <app-icon-picker [formControlName]="subInput.name"></app-icon-picker>
         }
     </div>
+    }@else if (field.type === 'urlsInput') {
+
+    <div class="urlsInput">
+        <tui-textfield>
+            <label tuiLabel>{{field.label}}</label>
+            <input formControlName="urlInputControl" #urlInput [placeholder]="field.placeholder ?? ''" tuiTextfield
+                maxlength="200" (keyup.enter)="addUrl(field.name, urlInput.value); urlInput.value = ''" />
+            <tui-icon icon="@tui.plus" (click)="addUrl(field.name, urlInput.value); urlInput.value = ''"></tui-icon>
+        </tui-textfield>
+        <tui-error formControlName="urlInputControl" [error]="[] | tuiFieldError | async" />
+        <div class="chips">
+            @for(url of form.get(field.name)?.value; track url) {
+            <span tuiChip class="url-chip" (click)="removeUrl(field.name, url)">{{url}} <tui-icon
+                    icon="@tui.x"></tui-icon></span>
+            }
+        </div>
+    </div>
+    <button tuiButton type="submit" [disabled]="form.invalid">Submit</button>
     }
     }
 </form>

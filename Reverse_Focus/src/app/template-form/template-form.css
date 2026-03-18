@@ -19,6 +19,33 @@ tui-textfield {
     transition: all 0.3s ease;
 }
 
+.urlsInput {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    gap: 4px;
+    max-height: 64px;
+    overflow: auto;
+}
+
+.url-chip {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.url-chip tui-icon {
+    width: 12px;
+    height: 12px;
+}
+
 div {
     width: 100%;
 }
