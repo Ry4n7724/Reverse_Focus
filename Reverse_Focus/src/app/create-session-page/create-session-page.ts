@@ -1,17 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TemplateForm } from "../template-form/template-form";
 import { FieldConfig } from '../template-form/field-config';
-import { Form, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { SessionService } from '../session-database/session-service';
-import { emptyListValidator } from '../template-form/emptyListValidator';
+import { SessionDropdown } from "../session-dropdown/session-dropdown";
+import Session from '../session-database/session';
 
 @Component({
   selector: 'app-create-session-page',
-  imports: [TemplateForm],
+  imports: [TemplateForm, SessionDropdown],
   templateUrl: './create-session-page.html',
   styleUrl: './create-session-page.css',
 })
-export class CreateSessionPage {
+export class CreateSessionPage implements OnInit {
 
   sessionService = inject(SessionService)
   formTitle = 'Create Session';
@@ -22,6 +23,7 @@ export class CreateSessionPage {
     },
     { name: 'urlList', label: 'Add URLs', type: 'urlsInput', value: [], placeholder: 'url1,url2,...' },
   ]
+  sessions = signal<Session[]>([]);
 
   saveSession = (form: FormGroup) => {
     if (form.valid) {
@@ -29,5 +31,9 @@ export class CreateSessionPage {
       this.sessionService.addSession(form.value.sessionName, form.value.icon, form.value.url, false)
       form.reset()
     }
+  }
+
+  async ngOnInit() {
+    this.sessions.set(await this.sessionService.getSessions())
   }
 }

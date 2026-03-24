@@ -1,0 +1,82 @@
+.sessions-list {
+    background: var(--tui-base-02);
+    border: 1px solid var(--tui-base-01);
+    border-radius: var(--tui-radius-l);
+    padding: 1rem;
+}
+
+.sessions-list h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--tui-text-secondary);
+}
+
+.session-items {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    gap: 0.5rem;
+}
+
+.session-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--tui-text-primary);
+}
+
+.session-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.session-name {
+    font-weight: 500;
+    color: var(--tui-text-primary);
+}
+
+.session-urls {
+    font-size: 0.75rem;
+    color: var(--tui-text-secondary);
+}
+
+.session-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--tui-base-01);
+}
+
+.chevron {
+    color: var(--tui-text-tertiary);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.chevron.rotated {
+    transform: rotate(180deg);
+}
+
+.session-urls-list {
+    padding: 0.75rem 0 0.25rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.url-item {
+    font-size: 0.875rem;
+    color: var(--tui-text-secondary);
+    padding: 0.25rem 0;
+}
+
+.no-urls {
+    font-size: 0.875rem;
+    color: var(--tui-text-tertiary);
+    font-style: italic;
+}
