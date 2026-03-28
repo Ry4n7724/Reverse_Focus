@@ -30,7 +30,7 @@ export class App implements OnInit {
       this.router.navigateByUrl(currentHash);
     } else {
       const savedRoute = localStorage.getItem(this.STORAGE_KEY);
-      if (savedRoute) {
+      if (savedRoute && savedRoute !== '/blocker') {
         this.router.navigateByUrl(savedRoute);
       }
     }
@@ -38,7 +38,9 @@ export class App implements OnInit {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
-      localStorage.setItem(this.STORAGE_KEY, event.urlAfterRedirects);
+      if (event.urlAfterRedirects !== '/blocker') {
+        localStorage.setItem(this.STORAGE_KEY, event.urlAfterRedirects);
+      }
     });
   }
 }
