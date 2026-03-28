@@ -19,9 +19,12 @@ tui-tiles {
 
 .tiles-scroll {
     width: 80%;
-    height: 150px;
+    max-height: 150px;
+    min-height: 80px;
+    flex: 1;
     box-sizing: border-box;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;

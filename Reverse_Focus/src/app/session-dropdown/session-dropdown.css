@@ -66,6 +66,8 @@
 .session-name {
     font-weight: 500;
     color: var(--tui-text-primary);
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .session-urls {
