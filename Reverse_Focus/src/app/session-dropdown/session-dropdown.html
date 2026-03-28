@@ -1,12 +1,12 @@
 <button tuiButton tuiChevron [tuiDropdown]="content" [(tuiDropdownOpen)]="open" class="session-header">
-    <div>
+    <div class="session-header-content">
         <lucide-icon [name]="session().icon" class="icon-native"></lucide-icon>
         <div class="session-info">
             <span class="session-name">{{session().sessionName}}</span>
             <span class="session-urls">{{ session().urls.length }} urls</span>
         </div>
     </div>
-    <lucide-icon name="pencil-line" class="icon-native"></lucide-icon>
+    <lucide-icon name="pencil-line" class="icon-native edit-icon" (click)="onEditClick($event)"></lucide-icon>
 </button>
 
 <ng-template #content>

@@ -13,16 +13,16 @@ import Session from '../session-database/session';
   styleUrl: './create-session-page.css',
 })
 export class CreateSessionPage implements OnInit {
-
+  mode: Mode = Mode.CREATE;
   sessionService = inject(SessionService)
   formTitle = 'Create Session';
-  fields: FieldConfig[] = [
+  fields = signal<FieldConfig[]>([
     {
       name: 'sessionName', label: 'Session Name', type: 'inputWithIconPicker', validator: Validators.required,
       subInputs: [{ name: 'icon', label: 'Session Icon', type: 'icon-picker', value: 'book' }]
     },
     { name: 'urlList', label: 'Add URLs', type: 'urlsInput', value: [], placeholder: 'url1,url2,...' },
-  ]
+  ]);
   sessions = signal<Session[]>([]);
 
   saveSession = (form: FormGroup) => {
@@ -36,4 +36,21 @@ export class CreateSessionPage implements OnInit {
   async ngOnInit() {
     this.sessions.set(await this.sessionService.getSessions())
   }
+
+  editSession($event: Session) {
+    this.mode = Mode.EDIT;
+    this.formTitle = 'Edit Session';
+    this.fields.set([
+      {
+        name: 'sessionName', label: 'Session Name', type: 'inputWithIconPicker', validator: Validators.required,
+        subInputs: [{ name: 'icon', label: 'Session Icon', type: 'icon-picker', value: $event.icon }]
+      },
+      { name: 'urlList', label: 'Add URLs', type: 'urlsInput', value: $event.urls, placeholder: 'url1,url2,...' },
+    ]);
+  }
+}
+
+enum Mode {
+  CREATE = 'create',
+  EDIT = 'edit'
 }

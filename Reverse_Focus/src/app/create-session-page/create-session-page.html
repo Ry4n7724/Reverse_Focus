@@ -1,6 +1,6 @@
 <div class="container">
-    <app-template-form [formTitle]="formTitle" [fields]="fields" [methode]="saveSession"></app-template-form>
+    <app-template-form [formTitle]="formTitle" [fields]="fields()" [methode]="saveSession"></app-template-form>
     @for (session of sessions(); track session.id) {
-    <app-session-dropdown [session]="session"></app-session-dropdown>
+    <app-session-dropdown [session]="session" (editSession)="editSession($event)"></app-session-dropdown>
     }
 </div>
