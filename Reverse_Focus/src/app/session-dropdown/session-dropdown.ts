@@ -14,10 +14,16 @@ import { LucideAngularModule } from "lucide-angular";
 export class SessionDropdown {
   session = input.required<Session>();
   editSession = output<Session>();
+  deleteSession = output<Session>();
   protected open = false;
 
   onEditClick(event: Event): void {
     event.stopPropagation();
     this.editSession.emit(this.session());
+  }
+
+  onDeleteClick($event: Event): void {
+    $event.stopPropagation();
+    this.deleteSession.emit(this.session());
   }
 }

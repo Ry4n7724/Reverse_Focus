@@ -1,6 +1,10 @@
 <div class="container">
     <app-template-form [formTitle]="formTitle" [fields]="fields()" [methode]="saveSession"></app-template-form>
-    @for (session of sessions(); track session.id) {
-    <app-session-dropdown [session]="session" (editSession)="editSession($event)"></app-session-dropdown>
-    }
+    <h2>Existing Sessions</h2>
+    <div class="sessions-list">
+        @for (session of sessions(); track session.id) {
+        <app-session-dropdown [session]="session" (editSession)="editSession($event)"
+            (deleteSession)="deleteSession($event)"></app-session-dropdown>
+        }
+    </div>
 </div>

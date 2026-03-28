@@ -39,7 +39,8 @@
     flex-shrink: 0;
 }
 
-.edit-icon {
+.edit-icon,
+.delete-icon {
     flex-shrink: 0;
     padding: 0.5rem 0.75rem;
     border-radius: var(--tui-radius-s);
@@ -48,7 +49,8 @@
     --glow-color: 80, 108, 205;
 }
 
-.edit-icon:hover {
+.edit-icon:hover,
+.delete-icon:hover {
     background: var(--tui-background-elevated-1);
     box-shadow: 0 0 8px rgba(var(--glow-color), 0.45), 0 0 20px rgba(var(--glow-color), 0.18);
     color: var(--tui-text-01);

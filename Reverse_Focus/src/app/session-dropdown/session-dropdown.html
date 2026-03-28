@@ -6,6 +6,7 @@
             <span class="session-urls">{{ session().urls.length }} urls</span>
         </div>
     </div>
+    <lucide-icon name="trash-2" class="icon-native delete-icon" (click)="onDeleteClick($event)"></lucide-icon>
     <lucide-icon name="pencil-line" class="icon-native edit-icon" (click)="onEditClick($event)"></lucide-icon>
 </button>
 

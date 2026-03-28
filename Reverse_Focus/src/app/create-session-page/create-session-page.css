@@ -4,3 +4,10 @@
     padding: 2rem;
     height: 100%;
 }
+
+.sessions-list {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    overflow-y: auto;
+}
