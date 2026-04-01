@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { TuiIcon, TuiError, TuiTextfieldComponent, TuiTextfield, TuiButton } from "@taiga-ui/core";
 import { TuiChip, TuiFieldErrorPipe, tuiValidationErrorsProvider } from '@taiga-ui/kit';
 import { FieldConfig } from './field-config'
@@ -22,24 +22,26 @@ export class TemplateForm implements OnInit {
   fields = input.required<FieldConfig[]>()
   methode = input.required<(form: FormGroup) => void>()
   form = new FormGroup({});
-  urlInputControl = new FormControl('', [
-    Validators.required,
-  ]);
+  urlInputControl = new FormControl('');
 
 
   ngOnInit() {
     this.form.addControl("urlInputControl", this.urlInputControl);
     for (let field of this.fields()) {
-      this.form.addControl(field.name, new FormControl(field.value, field.validator))
+      this.form.addControl(field.name, new FormControl(field.value, { validators: field.validator as ValidatorFn, nonNullable: true }));
       if (field.subInputs) {
         for (let subInput of field.subInputs) {
-          this.form.addControl(subInput.name, new FormControl(subInput.value ?? '', subInput.validator))
+          this.form.addControl(subInput.name, new FormControl(subInput.value ?? '', { validators: subInput.validator as ValidatorFn, nonNullable: true }))
         }
       }
     }
   }
 
-  addUrl(fieldName: string, url: string) {
+  addUrl(fieldName: string) {
+    const url = this.urlInputControl.value ?? '';
+    if (!url.trim()) {
+      return;
+    }
     const urls = url.split(',').map(u => u.trim());
     for (let url of urls) {
       const control = this.form.get(fieldName)
@@ -50,6 +52,7 @@ export class TemplateForm implements OnInit {
         }
       }
     }
+    this.urlInputControl.setValue('');
   }
 
   removeUrl(fieldName: string, url: string) {
@@ -58,5 +61,9 @@ export class TemplateForm implements OnInit {
       const current: string[] = control.value || []
       control.setValue(current.filter((u: string) => u !== url))
     }
+  }
+
+  resetForm() {
+    this.form.reset();
   }
 }

@@ -49,3 +49,13 @@ tui-textfield {
 div {
     width: 100%;
 }
+
+.form-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.form-actions button {
+    flex: 1;
+}

@@ -1,0 +1,24 @@
+<button tuiButton tuiChevron [tuiDropdown]="content" [(tuiDropdownOpen)]="open" class="session-header">
+    <div class="session-header-content">
+        <lucide-icon [name]="session().icon" class="icon-native"></lucide-icon>
+        <div class="session-info">
+            <span class="session-name">{{session().sessionName}}</span>
+            <span class="session-urls">{{ session().urls.length }} urls</span>
+        </div>
+    </div>
+    <lucide-icon name="trash-2" class="icon-native delete-icon" (click)="onDeleteClick($event)"></lucide-icon>
+    <lucide-icon name="pencil-line" class="icon-native edit-icon" (click)="onEditClick($event)"></lucide-icon>
+</button>
+
+<ng-template #content>
+    <div class="sessions-list">
+        <h3>Sessions</h3>
+        <div class="session-items">
+            @for (url of session().urls; track url) {
+            <div class="url-item">{{url}}</div>
+            }@empty {
+            <div class="no-urls">No URLs in this session</div>
+            }
+        </div>
+    </div>
+</ng-template>

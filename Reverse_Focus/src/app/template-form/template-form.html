@@ -1,4 +1,4 @@
-<form tuiForm="m" [formGroup]="form" (ngSubmit)="methode()(form)">
+<form tuiForm="m" [formGroup]="form" (ngSubmit)="methode()(form)" (keydown.enter)="$event.preventDefault()">
     <header tuiHeader>
         <h2 tuiAppearance="title">{{formTitle()}}</h2>
     </header>
@@ -32,9 +32,9 @@
     <div class="urlsInput">
         <tui-textfield>
             <label tuiLabel>{{field.label}}</label>
-            <input formControlName="urlInputControl" #urlInput [placeholder]="field.placeholder ?? ''" tuiTextfield
-                maxlength="200" (keyup.enter)="addUrl(field.name, urlInput.value); urlInput.value = ''" />
-            <tui-icon icon="@tui.plus" (click)="addUrl(field.name, urlInput.value); urlInput.value = ''"></tui-icon>
+            <input formControlName="urlInputControl" [placeholder]="field.placeholder ?? ''" tuiTextfield
+                maxlength="200" (keyup.enter)="addUrl(field.name)" />
+            <tui-icon icon="@tui.plus" (click)="addUrl(field.name)"></tui-icon>
         </tui-textfield>
         <tui-error formControlName="urlInputControl" [error]="[] | tuiFieldError | async" />
         <div class="chips">
@@ -44,7 +44,11 @@
             }
         </div>
     </div>
-    <button tuiButton type="submit" [disabled]="form.invalid">Submit</button>
+    <div class="form-actions">
+        <button tuiButton type="submit" [disabled]="form.invalid">Submit</button>
+        <button tuiButton type="button" appearance="outline" (click)="resetForm()">Reset</button>
+    </div>
+
     }
     }
 </form>
