@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { TuiIcon, TuiError, TuiTextfieldComponent, TuiTextfield, TuiButton } from "@taiga-ui/core";
 import { TuiChip, TuiFieldErrorPipe, tuiValidationErrorsProvider } from '@taiga-ui/kit';
@@ -23,6 +23,7 @@ export class TemplateForm implements OnInit {
   methode = input.required<(form: FormGroup) => void>()
   form = new FormGroup({});
   urlInputControl = new FormControl('');
+  cancleEdit = output();
 
 
   ngOnInit() {
@@ -65,5 +66,6 @@ export class TemplateForm implements OnInit {
 
   resetForm() {
     this.form.reset();
+    this.cancleEdit.emit();
   }
 }
