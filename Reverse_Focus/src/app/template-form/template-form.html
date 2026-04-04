@@ -8,7 +8,8 @@
 
     <tui-textfield>
         <label tuiLabel>{{field.label}}</label>
-        <input [formControlName]="field.name" [placeholder]="field.placeholder ?? ''" tuiTextfield maxlength="30" />
+        <input [formControlName]="field.name" [placeholder]="field.placeholder ?? ''" tuiTextfield maxlength="30"
+            (keydown.enter)="methode()(form)" />
         <tui-icon icon="@tui.step-forward" (click)="methode()(form)"></tui-icon>
     </tui-textfield>
     <tui-error [formControlName]="field.name" [error]="[] | tuiFieldError | async" />
@@ -46,7 +47,7 @@
     </div>
     <div class="form-actions">
         <button tuiButton type="submit" [disabled]="form.invalid">Submit</button>
-        <button tuiButton type="button" appearance="outline" (click)="resetForm()">Reset</button>
+        <button tuiButton type="button" appearance="outline" (click)="resetForm()">Cancel</button>
     </div>
 
     }

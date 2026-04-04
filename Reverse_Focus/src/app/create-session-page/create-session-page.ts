@@ -92,6 +92,7 @@ export class CreateSessionPage implements OnInit, AfterViewInit, OnDestroy {
       this.mode = Mode.CREATE;
       this.formTitle = 'Create Session';
       this.fields.set(this.defaultFields);
+      form.reset();
       this.loadSessions();
       this.clearStorage();
     } else if (form.valid) {
@@ -140,6 +141,12 @@ export class CreateSessionPage implements OnInit, AfterViewInit, OnDestroy {
   deleteSession($event: Session) {
     this.sessionService.deleteSession($event.id);
     this.loadSessions();
+  }
+
+  cancleEdit() {
+    this.mode = Mode.CREATE;
+    this.formTitle = 'Create Session';
+    this.fields.set(this.defaultFields);
   }
 }
 
