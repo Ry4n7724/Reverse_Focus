@@ -1,4 +1,11 @@
 <section class="study-sessions-container">
+    @if(searchModeModeActive()) {
+
+    <h2>Search Mode Active</h2>
+    <app-countdown-component [searchModeEnd]="searchModeEnd"></app-countdown-component>
+
+    } @else {
+
     <h2>Study Sessions</h2>
     <div class="sessions">
         @for(session of sessions(); track session.id){
@@ -7,4 +14,6 @@
                 [name]="session.icon"></lucide-icon> {{session.sessionName}}</span>
         }
     </div>
+
+    }
 </section>

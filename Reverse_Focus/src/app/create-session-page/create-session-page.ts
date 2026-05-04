@@ -96,7 +96,6 @@ export class CreateSessionPage implements OnInit, AfterViewInit, OnDestroy {
       this.loadSessions();
       this.clearStorage();
     } else if (form.valid) {
-      console.log(form.value)
       this.sessionService.addSession(form.value.sessionName, form.value.icon, form.value.urlList, false)
       form.reset()
       this.loadSessions();
