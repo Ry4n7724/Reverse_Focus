@@ -9,14 +9,33 @@ import { Quote, QuotesService } from '../quotes-service/quotes-service';
 })
 export class WebsiteBlocker implements OnInit {
 
+
   quote = signal<Quote | null>(null);
   quoteService = inject(QuotesService);
+  blockedUrl: string | null = null;
+
 
   async ngOnInit() {
     const quote = (await this.quoteService.getQuote())[0];
-    console.log('Hello World');
-    console.log(quote);
     this.quote.set(quote);
+    chrome.storage.local.get('blockedUrl', (result: any) => {
+      this.blockedUrl = result.blockedUrl;
+    });
+  }
+
+  navigateForward() {
+    if (this.blockedUrl) {
+      window.location.href = this.blockedUrl;
+      chrome.storage.local.remove('blockedUrl');
+    }
+  }
+
+  startSearchMode(time: number) {
+    const endTime = Date.now() + time * 60 * 1000;
+    chrome.storage.local.set({
+      searchModeEnd: endTime
+    });
+    this.navigateForward();
   }
 
 }

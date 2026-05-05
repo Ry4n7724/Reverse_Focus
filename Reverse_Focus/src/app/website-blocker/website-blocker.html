@@ -14,4 +14,13 @@
             — {{ quote()?.a }}
         </p>
     </div>
+    <p class="search-mode-title">
+        Search Mode
+    </p>
+    <div class="search-mode-box">
+        <button class="search-mode-button" (click)="startSearchMode(5)">5 min</button>
+        <button class="search-mode-button" (click)="startSearchMode(10)">10 min</button>
+        <button class="search-mode-button" (click)="startSearchMode(15)">15 min</button>
+        <button class="search-mode-button" (click)="startSearchMode(20)">20 min</button>
+    </div>
 </div>
