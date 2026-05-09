@@ -1,26 +1,27 @@
 <div class="container">
 
-    <h1>Website Blocked</h1>
-
-    <p class="subtitle">
+    @if (showTitle()) {
+    <h1 class="fade-in">Website Blocked</h1>
+    <p class="subtitle fade-in">
         Take a breath. This page was intentionally paused.
     </p>
+    }
 
-    <div class="quote-box">
-        <p class="quote">
-            {{ quote()?.q }}
-        </p>
-        <p class="author">
-            — {{ quote()?.a }}
-        </p>
+    @if (showQuote()) {
+    <div class="quote-box fade-in">
+        <p class="quote">{{ quote()?.q }}</p>
+        <p class="author">— {{ quote()?.a }}</p>
     </div>
-    <p class="search-mode-title">
-        Search Mode
-    </p>
-    <div class="search-mode-box">
+    }
+
+    @if (showSearchMode()) {
+    <p class="search-mode-title fade-in">Search Mode</p>
+    <div class="search-mode-box fade-in">
         <button class="search-mode-button" (click)="startSearchMode(5)">5 min</button>
         <button class="search-mode-button" (click)="startSearchMode(10)">10 min</button>
         <button class="search-mode-button" (click)="startSearchMode(15)">15 min</button>
         <button class="search-mode-button" (click)="startSearchMode(20)">20 min</button>
     </div>
+    }
+
 </div>
