@@ -35,15 +35,11 @@ export class CountdownComponent implements OnInit, OnDestroy {
     const distance = this.searchModeEnd() - now;
 
     if (distance <= 0) {
-      this.remainingTime.set('Search mode ended');
-
       clearInterval(this.intervalId);
-
       chrome.storage.local.remove([
         'searchMode',
         'searchModeEnd'
       ]);
-
       return;
     }
 
