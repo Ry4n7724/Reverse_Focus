@@ -62,8 +62,9 @@ tui-tiles {
     font-size: 1rem;
     color: var(--tui-text-01);
     padding: 0.5rem;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 160px;
 }
 
 .tile-left {

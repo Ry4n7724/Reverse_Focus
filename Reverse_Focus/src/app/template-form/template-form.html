@@ -8,7 +8,7 @@
 
     <tui-textfield>
         <label tuiLabel>{{field.label}}</label>
-        <input [formControlName]="field.name" [placeholder]="field.placeholder ?? ''" tuiTextfield maxlength="30"
+        <input [formControlName]="field.name" [placeholder]="field.placeholder ?? ''" tuiTextfield
             (keydown.enter)="methode()(form)" />
         <tui-icon icon="@tui.step-forward" (click)="methode()(form)"></tui-icon>
     </tui-textfield>

@@ -8,7 +8,7 @@
                     <div class="tile-left">
                         <input tuiCheckbox class="tile-checkbox" type="checkbox" [ngModel]="task.done"
                             (change)="toggleTaskDone(task.id, task.done)" />
-                        <span class="tile-text">{{task.task}}</span>
+                        <span class="tile-text" tuiFade [tuiHintOverflow]="task.task">{{task.task}}</span>
                     </div>
                     <button class="tile-delete" (click)="deleteTask(task.id)" type="button" title="Delete task">
                         <tui-icon icon="@tui.trash"></tui-icon>
