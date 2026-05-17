@@ -23,6 +23,12 @@ h2 {
     cursor: pointer;
 }
 
+.icon-native {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .active-chip {
     --glow-color: 80, 108, 205;
     box-shadow: 0 0 8px rgba(var(--glow-color), 0.45), 0 0 20px rgba(var(--glow-color), 0.18);
