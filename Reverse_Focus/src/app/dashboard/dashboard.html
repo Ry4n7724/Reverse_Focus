@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Dashboard</h1>
+    <p class="subtitle">Your unblocked websites from active sessions</p>
+
+    @if (unblockedSites().length > 0) {
+    <div class="sites-grid">
+        @for (site of unblockedSites(); track site.url) {
+        <a class="site-card" [href]="site.url" target="_blank" rel="noopener noreferrer">
+            <img class="site-favicon" [src]="faviconUrl(site.domain)" [alt]="site.domain" width="32" height="32"
+                loading="lazy" />
+            <span class="site-domain">{{ site.domain }}</span>
+        </a>
+        }
+    </div>
+    } @else {
+    <div class="empty-state">
+        <lucide-icon name="globe-x" class="empty-icon"></lucide-icon>
+        <p>No unblocked sites yet. Activate a study session to see your allowed websites here.</p>
+    </div>
+    }
+    <button tuiButton (click)="unfocus()">Unfocus</button>
+</div>
