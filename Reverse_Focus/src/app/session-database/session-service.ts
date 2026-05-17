@@ -4,6 +4,10 @@ import { db } from "./session-db";
 @Injectable({ providedIn: 'root' })
 export class SessionService {
 
+    hasActiveSession() {
+        return db.sessionDB.toArray().then(sessions => sessions.some(s => s.active));
+    }
+
     addSession(sessionName: string, icon: string, urls: string[], active: boolean) {
         return db.sessionDB.add({ sessionName, icon, urls, active })
     }
