@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { SessionService } from '../session-database/session-service';
 import { LucideAngularModule } from "lucide-angular";
-import session from '../session-database/session';
+import Session from '../session-database/session';
 import { Router } from '@angular/router';
 import { TuiButton } from "@taiga-ui/core";
 
@@ -20,7 +20,7 @@ export class Dashboard implements OnInit {
   router = inject(Router);
   sessionService = inject(SessionService);
   unblockedSites = signal<UnblockedSite[]>([]);
-  activeSessions: session[] = [];
+  activeSessions: Session[] = [];
 
   async ngOnInit() {
     const sessions = await this.sessionService.getSessions();
@@ -46,9 +46,9 @@ export class Dashboard implements OnInit {
   }
 
   async unfocus() {
-    for (let session of this.activeSessions) {
-      await this.sessionService.updateSession(session.id, { active: false });
-    }
+    await Promise.all(
+      this.activeSessions.map((s) => this.sessionService.updateSession(s.id, { active: false })),
+    );
     this.router.navigate(['/'], { replaceUrl: true });
   }
 
