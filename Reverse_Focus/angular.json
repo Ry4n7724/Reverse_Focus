@@ -21,6 +21,7 @@
               "base": "dist/Reverse_Focus",
               "browser": ""
             },
+            "deleteOutputPath": false,
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
