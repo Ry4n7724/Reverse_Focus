@@ -6,7 +6,7 @@ import Task from "./task"
 export class TaskService {
 
     addTask(task: string) {
-        db.taskDB.add({ task, done: false })
+        return db.taskDB.add({ task, done: false })
     }
 
     async updateTask(id: number, task: Partial<Task>) {
