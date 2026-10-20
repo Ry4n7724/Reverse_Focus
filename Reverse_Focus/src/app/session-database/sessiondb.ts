@@ -11,6 +11,11 @@ export class SessionDB extends Dexie {
         this.version(1).stores({
             sessionDB: "++id, sessionName, icon, urls, active",
         })
+        // Booleans are not valid IndexedDB keys and `urls` was never a multiEntry index,
+        // so only the primary key is indexed; sessions are filtered in memory.
+        this.version(2).stores({
+            sessionDB: "++id",
+        })
         this.sessionDB.mapToClass(Session)
     }
 } 
