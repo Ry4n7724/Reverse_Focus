@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && npm run build:background",
+    "build": "ng build && pnpm run build:background",
     "build:background": "esbuild src/background.ts --bundle --outfile=dist/Reverse_Focus/background.js --platform=browser --target=chrome120 --format=iife",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -22,7 +22,7 @@
     ]
   },
   "private": true,
-  "packageManager": "npm@11.6.2",
+  "packageManager": "pnpm@12.11.2",
   "dependencies": {
     "@angular/animations": "^21.1.1",
     "@angular/cdk": "^21.1.1",
