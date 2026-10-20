@@ -7,14 +7,12 @@
     "default_popup": "index.html"
   },
   "host_permissions": [
-    "<all_urls>"
+    "https://zenquotes.io/*"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "permissions": [
-    "scripting",
-    "activeTab",
     "tabs",
     "webNavigation",
     "storage"
