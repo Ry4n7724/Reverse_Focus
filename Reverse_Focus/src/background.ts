@@ -1,28 +1,18 @@
-import { db } from "./app/session-database/session-db";
+import { db } from './app/session-database/session-db';
+import { shouldBlock } from './app/session-database/should-block';
 
 chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
-    if (details.frameId !== 0) return;
+  if (details.frameId !== 0) return;
 
+  const { searchModeEnd } = (await chrome.storage.local.get('searchModeEnd')) as {
+    searchModeEnd?: number;
+  };
+  const sessions = await db.sessionDB.toArray();
 
-    const searchMode: any = await chrome.storage.local.get('searchModeEnd');
-    const now = Date.now();
-    if (searchMode.searchModeEnd && now < searchMode.searchModeEnd) {
-        return;
-    }
+  if (!shouldBlock(details.url, sessions, searchModeEnd, Date.now())) return;
 
-    const sessions = await db.sessionDB.toArray();
-
-    for (const session of sessions) {
-        if (
-            session.active &&
-            !session.urls.some(url => details.url.includes(url))
-            && details.url !== "chrome://newtab/"
-        ) {
-            chrome.tabs.update(details.tabId, {
-                url: chrome.runtime.getURL("index.html#blocker")
-            });
-            chrome.storage.local.set({ blockedUrl: details.url });
-            return;
-        }
-    }
+  await chrome.storage.local.set({ blockedUrl: details.url });
+  await chrome.tabs.update(details.tabId, {
+    url: chrome.runtime.getURL('index.html#blocker'),
+  });
 });
