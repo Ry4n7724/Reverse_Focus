@@ -1,13 +1,27 @@
-<button tuiButton tuiChevron type="button" [tuiDropdown]="dropdownContent" [(tuiDropdownOpen)]="open">
-    <lucide-icon [name]="iconValue() ?? 'book'" class="lucide-icon-button"></lucide-icon>
+<button tuiIconButton type="button" appearance="secondary" size="l" aria-label="Choose icon"
+    [tuiDropdown]="dropdownContent" [tuiDropdownOpen]="open()" (tuiDropdownOpenChange)="open.set($event)">
+    <lucide-icon [name]="iconValue() || 'book'" class="current-icon"></lucide-icon>
+    Choose icon
 </button>
 
 <ng-template #dropdownContent>
-    <tui-data-list>
+    <div class="picker">
+        <tui-textfield>
+            <label tuiLabel>Search icons</label>
+            <input tuiTextfield autocomplete="off" [ngModel]="query()" (ngModelChange)="query.set($event)" />
+        </tui-textfield>
         <div class="icon-grid">
-            @for (possibleIcon of iconList; track possibleIcon) {
-            <lucide-icon tuiOption (click)="selectIcon(possibleIcon)" [name]="possibleIcon"></lucide-icon>
+            @for (name of results().shown; track name) {
+            <button type="button" class="icon-option" [class.selected]="name === iconValue()" [attr.aria-label]="name"
+                [title]="name" (click)="selectIcon(name)">
+                <lucide-icon [name]="name"></lucide-icon>
+            </button>
+            } @empty {
+            <p class="hint">No icons match "{{ query() }}"</p>
             }
         </div>
-    </tui-data-list>
+        @if (results().total > results().shown.length) {
+        <p class="hint">Showing {{ results().shown.length }} of {{ results().total }}. Type to narrow down.</p>
+        }
+    </div>
 </ng-template>

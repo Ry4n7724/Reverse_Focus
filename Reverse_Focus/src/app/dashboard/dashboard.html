@@ -1,22 +1,47 @@
-<div class="container">
-    <h1>Dashboard</h1>
-    <p class="subtitle">Your unblocked websites from active sessions</p>
-
-    @if (unblockedSites().length > 0) {
-    <div class="sites-grid">
-        @for (site of unblockedSites(); track site.url) {
-        <a class="site-card" [href]="site.url" target="_blank" rel="noopener noreferrer">
-            <img class="site-favicon" [src]="faviconUrl(site.domain)" [alt]="site.domain" width="32" height="32"
-                loading="lazy" />
-            <span class="site-domain">{{ site.domain }}</span>
-        </a>
-        }
-    </div>
-    } @else {
-    <div class="empty-state">
-        <lucide-icon name="globe-x" class="empty-icon"></lucide-icon>
-        <p>No unblocked sites yet. Activate a study session to see your allowed websites here.</p>
-    </div>
+<div class="page">
+    @if (searchModeActive()) {
+    <section class="search-banner" aria-live="polite">
+        <lucide-icon name="search" class="banner-icon"></lucide-icon>
+        <div class="banner-text">
+            <strong>Search mode is on</strong>
+            <span>Blocking resumes when the timer ends.</span>
+        </div>
+        <app-countdown-component [searchModeEnd]="searchModeEnd()" (ended)="endSearchMode()">
+        </app-countdown-component>
+        <button tuiButton type="button" size="s" appearance="secondary" (click)="endSearchMode()">End now</button>
+    </section>
     }
-    <button tuiButton (click)="unfocus()">Unfocus</button>
+
+    <section class="status">
+        <div class="status-text">
+            <tui-badge appearance="positive" size="m">Focusing</tui-badge>
+            <h2>{{ sessionTitle() }}</h2>
+        </div>
+        <button tuiButton type="button" size="s" appearance="secondary-destructive" iconStart="@tui.square"
+            (click)="unfocus()">
+            End session
+        </button>
+    </section>
+
+    <section>
+        <h3>Allowed websites</h3>
+        @if (unblockedSites().length > 0) {
+        <div class="sites-grid">
+            @for (site of unblockedSites(); track site.url) {
+            <a class="site-card" [href]="withProtocol(site.url)" target="_blank" rel="noopener noreferrer">
+                <img class="site-favicon" [src]="faviconUrl(site.domain)" alt="" width="24" height="24"
+                    loading="lazy" />
+                <span class="site-domain">{{ site.domain }}</span>
+            </a>
+            }
+        </div>
+        } @else {
+        <div class="empty-state">
+            <lucide-icon name="globe-x" class="empty-icon"></lucide-icon>
+            <p>This session has no allowed websites, so everything is blocked. Add some on the Sessions tab.</p>
+        </div>
+        }
+    </section>
+
+    <app-todo></app-todo>
 </div>

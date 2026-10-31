@@ -6,7 +6,7 @@ import Task from "./task"
 export class TaskService {
 
     addTask(task: string) {
-        db.taskDB.add({ task, done: false })
+        return db.taskDB.add({ task, done: false })
     }
 
     async updateTask(id: number, task: Partial<Task>) {
@@ -15,6 +15,11 @@ export class TaskService {
 
     async deleteTask(id: number) {
         await db.taskDB.delete(id)
+    }
+
+    async clearCompleted() {
+        const done = (await db.taskDB.toArray()).filter(t => t.done).map(t => t.id)
+        await db.taskDB.bulkDelete(done)
     }
 
     getTasks() {

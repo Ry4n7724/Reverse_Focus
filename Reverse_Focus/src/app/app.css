@@ -1,17 +1,19 @@
-.app-container {
-    width: 100%;
-    height: 100%;
-}
-
 tui-root {
     height: 100%;
     width: 100%;
 }
 
-.icon-native {
-    width: 100%;
-    height: 100%;
+.shell {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    background: var(--tui-background-base);
+    color: var(--tui-text-primary);
+    font: var(--tui-font-text-m);
+}
+
+.content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
 }

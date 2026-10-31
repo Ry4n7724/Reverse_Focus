@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, input, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, input, output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-countdown-component',
@@ -9,7 +9,9 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   searchModeEnd = input<number>(0);
 
-  remainingTime = signal<string>('00:00:00');
+  ended = output<void>();
+
+  remainingTime = signal<string>('00:00');
 
   private intervalId: any;
 
@@ -40,6 +42,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
         'searchMode',
         'searchModeEnd'
       ]);
+      this.ended.emit();
       return;
     }
 
@@ -52,7 +55,9 @@ export class CountdownComponent implements OnInit, OnDestroy {
     );
 
     this.remainingTime.set(
-      `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`);
+      hours > 0
+        ? `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`
+        : `${this.pad(minutes)}:${this.pad(seconds)}`);
   }
 
   pad(value: number): string {

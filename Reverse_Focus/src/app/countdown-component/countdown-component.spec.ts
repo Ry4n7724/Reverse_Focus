@@ -1,3 +1,4 @@
+import { commonTestProviders } from '../testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CountdownComponent } from './countdown-component';
@@ -8,7 +9,8 @@ describe('CountdownComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CountdownComponent]
+      imports: [CountdownComponent],
+      providers: [...commonTestProviders]
     })
       .compileComponents();
 

@@ -1,3 +1,4 @@
+import { commonTestProviders } from '../testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BottomNavigation } from './bottom-navigation';
@@ -8,7 +9,8 @@ describe('BottomNavigation', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BottomNavigation]
+      imports: [BottomNavigation],
+      providers: [...commonTestProviders]
     })
     .compileComponents();
 

@@ -1,11 +1,56 @@
-<div class="container">
-    <app-template-form [formTitle]="formTitle" [fields]="fields()" [methode]="saveSession"
-        (cancleEdit)="cancleEdit()"></app-template-form>
-    <h2>Existing Sessions</h2>
-    <div class="sessions-list">
+@if (editing(); as current) {
+<app-session-editor [session]="editedSession()" (saved)="onSaved()" (cancelled)="editing.set(null)">
+</app-session-editor>
+} @else {
+<div class="page">
+    <header class="page-header">
+        <h2>Sessions</h2>
+        <button tuiButton type="button" size="s" iconStart="@tui.plus" (click)="editing.set('new')">
+            New session
+        </button>
+    </header>
+    <p class="intro">A session is a list of websites you are allowed to visit while focusing.</p>
+
+    <ul class="session-list">
         @for (session of sessions(); track session.id) {
-        <app-session-dropdown [session]="session" (editSession)="editSession($event)"
-            (deleteSession)="deleteSession($event)"></app-session-dropdown>
+        <li class="card">
+            <div class="card-main">
+                <lucide-icon [name]="session.icon" class="session-icon"></lucide-icon>
+                <button type="button" class="card-info" [attr.aria-expanded]="expandedId() === session.id"
+                    (click)="toggleExpanded(session.id)">
+                    <span class="name">{{ session.sessionName }}</span>
+                    <span class="meta">{{ session.urls.length }} allowed
+                        {{ session.urls.length === 1 ? 'site' : 'sites' }}
+                        @if (session.active) { · <strong class="active-badge">Active</strong> }
+                    </span>
+                </button>
+                <button tuiIconButton type="button" appearance="flat" size="s" iconStart="@tui.pencil"
+                    [attr.aria-label]="'Edit ' + session.sessionName" (click)="editing.set(session)">
+                    Edit
+                </button>
+                <button tuiIconButton type="button" appearance="flat" size="s" iconStart="@tui.trash"
+                    class="delete" [attr.aria-label]="'Delete ' + session.sessionName"
+                    (click)="deleteSession(session)">
+                    Delete
+                </button>
+            </div>
+            @if (expandedId() === session.id) {
+            <ul class="urls">
+                @for (url of session.urls; track url) {
+                <li>{{ url }}</li>
+                } @empty {
+                <li class="none">No websites. Everything is blocked.</li>
+                }
+            </ul>
+            }
+        </li>
+        } @empty {
+        <li class="empty">
+            <lucide-icon name="layers" class="empty-icon"></lucide-icon>
+            <p>No sessions yet.</p>
+            <button tuiButton type="button" (click)="editing.set('new')">Create your first session</button>
+        </li>
         }
-    </div>
+    </ul>
 </div>
+}

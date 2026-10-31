@@ -1,11 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
 :root {
     color-scheme: light dark;
 }
 
-body,
-html {
+html,
+body {
     margin: 0;
-    width: 400px;
-    height: 400px;
+    height: 100%;
+}
+
+/* The popup has a fixed size; the blocker page runs in a full tab. */
+body.popup {
+    width: 380px;
+    height: 560px;
+    overflow: hidden;
 }

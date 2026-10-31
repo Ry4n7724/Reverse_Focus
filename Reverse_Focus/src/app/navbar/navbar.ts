@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { TUI_DARK_MODE, TUI_DARK_MODE_KEY, TuiIcon } from "@taiga-ui/core";
+import { TUI_DARK_MODE, TuiButton, TuiIcon } from "@taiga-ui/core";
 
 @Component({
   selector: 'app-navbar',
-  imports: [TuiIcon],
+  imports: [TuiIcon, TuiButton],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })

@@ -1,25 +1,42 @@
-<div class="todo-container">
-    <app-template-form [fields]="fields" [formTitle]="formTitle" [methode]="saveTask"></app-template-form>
-    <div class="tiles-scroll tiles-scroll--border">
-        <tui-tiles>
-            @for (task of tasks(); track task.id) {
-            <tui-tile class="tile">
-                <div class="tile-content" [ngClass]="{ 'tile-done': task.done }">
-                    <div class="tile-left">
-                        <input tuiCheckbox class="tile-checkbox" type="checkbox" [ngModel]="task.done"
-                            (change)="toggleTaskDone(task.id, task.done)" />
-                        <span class="tile-text">{{task.task}}</span>
-                    </div>
-                    <button class="tile-delete" (click)="deleteTask(task.id)" type="button" title="Delete task">
-                        <tui-icon icon="@tui.trash"></tui-icon>
-                    </button>
-                </div>
-            </tui-tile>
-            } @empty {
-            <tui-tile class="tile">
-                <div class="tile-centered"><span class="tile-text">No tasks yet</span></div>
-            </tui-tile>
-            }
-        </tui-tiles>
+<section class="todo">
+    <header class="todo-header">
+        <h2>Tasks</h2>
+        @if (tasks().length) {
+        <span class="counter">{{ doneCount() }}/{{ tasks().length }} done</span>
+        }
+        @if (doneCount() > 0) {
+        <button tuiButton type="button" appearance="flat" size="xs" (click)="clearCompleted()">
+            Clear completed
+        </button>
+        }
+    </header>
+
+    <div class="add-row">
+        <tui-textfield class="add-field">
+            <label tuiLabel>Add a task</label>
+            <input tuiTextfield maxlength="80" [formControl]="newTask" (keydown.enter)="addTask()" />
+        </tui-textfield>
+        <button tuiIconButton type="button" size="l" iconStart="@tui.plus" aria-label="Add task"
+            [disabled]="!newTask.value.trim()" (click)="addTask()">
+            Add
+        </button>
     </div>
-</div>
+
+    <ul class="task-list">
+        @for (task of tasks(); track task.id) {
+        <li class="task" [class.done]="task.done">
+            <label class="task-label">
+                <input tuiCheckbox type="checkbox" size="m" [checked]="task.done"
+                    (change)="toggleTaskDone(task)" />
+                <span class="task-text">{{ task.task }}</span>
+            </label>
+            <button tuiIconButton type="button" appearance="flat" size="xs" iconStart="@tui.trash"
+                class="delete" aria-label="Delete task" (click)="deleteTask(task.id)">
+                Delete
+            </button>
+        </li>
+        } @empty {
+        <li class="empty">Nothing to do yet. Add your first task above.</li>
+        }
+    </ul>
+</section>

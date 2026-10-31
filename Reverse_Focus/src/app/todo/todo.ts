@@ -1,54 +1,54 @@
-import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
-import { FormGroup, FormsModule } from '@angular/forms';
-import { TuiIcon } from "@taiga-ui/core";
-import { TuiCheckbox, TuiTile, TuiTilesComponent } from "@taiga-ui/kit";
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { TuiButton, TuiTextfield } from "@taiga-ui/core";
+import { TuiCheckbox } from "@taiga-ui/kit";
 import Task from '../task-database/task';
 import { TaskService } from '../task-database/task-service';
-import { FieldConfig } from '../template-form/field-config';
-import { TemplateForm } from "../template-form/template-form";
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-todo',
-  imports: [TemplateForm, TuiTile, TuiIcon, FormsModule, CommonModule, TuiTilesComponent, TuiCheckbox],
+  imports: [ReactiveFormsModule, TuiButton, TuiTextfield, TuiCheckbox],
   templateUrl: './todo.html',
   styleUrl: './todo.css',
 })
 export class Todo implements OnInit {
+  private readonly taskService = inject(TaskService);
 
-  formTitle = 'To Do'
-  fields: FieldConfig[] = [{
-    name: 'task', label: 'Task', type: 'textfield'
-  }]
-  taskService = inject(TaskService)
-  protected order = new Map<number, number>()
-  tasks = signal<Task[]>([])
+  readonly newTask = new FormControl('', { nonNullable: true });
+  readonly tasks = signal<Task[]>([]);
+  readonly doneCount = computed(() => this.tasks().filter(t => t.done).length);
 
   ngOnInit() {
-    this.loadTasks()
+    this.loadTasks();
   }
 
   async loadTasks() {
-    this.tasks.set(await this.taskService.getTasks());
-    this.tasks().reverse();
+    // newest first, without mutating the fetched array in place
+    this.tasks.set([...(await this.taskService.getTasks())].reverse());
   }
 
-  toggleTaskDone(id: number, state: boolean) {
-    this.taskService.updateTask(id, { done: !state });
-    this.loadTasks()
-  }
-
-  saveTask = (form: FormGroup) => {
-    if (form.value.task.trim() !== '') {
-      this.taskService.addTask(form.value.task);
-      form.reset();
-      this.loadTasks()
+  async addTask() {
+    const text = this.newTask.value.trim();
+    if (!text) {
+      return;
     }
-  };
+    await this.taskService.addTask(text);
+    this.newTask.reset();
+    await this.loadTasks();
+  }
 
+  async toggleTaskDone(task: Task) {
+    await this.taskService.updateTask(task.id, { done: !task.done });
+    await this.loadTasks();
+  }
 
-  deleteTask(taskId: number) {
-    this.taskService.deleteTask(taskId);
-    this.loadTasks();
+  async deleteTask(id: number) {
+    await this.taskService.deleteTask(id);
+    await this.loadTasks();
+  }
+
+  async clearCompleted() {
+    await this.taskService.clearCompleted();
+    await this.loadTasks();
   }
 }

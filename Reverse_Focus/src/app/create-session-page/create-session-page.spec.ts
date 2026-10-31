@@ -1,3 +1,4 @@
+import { commonTestProviders } from '../testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateSessionPage } from './create-session-page';
@@ -8,7 +9,8 @@ describe('CreateSessionPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateSessionPage]
+      imports: [CreateSessionPage],
+      providers: [...commonTestProviders]
     })
     .compileComponents();
 

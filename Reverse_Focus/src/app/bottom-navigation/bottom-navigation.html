@@ -1,16 +1,11 @@
-<nav class="bottom-nav" role="navigation" aria-label="Bottom navigation">
-    <a class="nav-item" routerLink="/" aria-label="Home">
-        <tui-icon icon="@tui.house"></tui-icon>
-        <span class="label">Home</span>
+<nav class="bottom-nav" aria-label="Main navigation">
+    <a class="nav-item" routerLink="/" [class.active]="focusActive()"
+        [attr.aria-current]="focusActive() ? 'page' : null">
+        <tui-icon icon="@tui.target"></tui-icon>
+        <span class="label">Focus</span>
     </a>
-
-    <a class="nav-item" routerLink="create-session" aria-label="Sessions">
-        <tui-icon icon="@tui.clock"></tui-icon>
+    <a class="nav-item" routerLink="/create-session" routerLinkActive="active" ariaCurrentWhenActive="page">
+        <tui-icon icon="@tui.layers"></tui-icon>
         <span class="label">Sessions</span>
-    </a>
-
-    <a class="nav-item" href="#" aria-label="Settings">
-        <tui-icon icon="@tui.settings"></tui-icon>
-        <span class="label">Settings</span>
     </a>
 </nav>

@@ -1,0 +1,51 @@
+<form class="editor" [formGroup]="form" (ngSubmit)="save()">
+    <h2>{{ isEdit ? 'Edit session' : 'New session' }}</h2>
+
+    <div class="name-row">
+        <tui-textfield class="name-field">
+            <label tuiLabel>Session name</label>
+            <input tuiTextfield formControlName="sessionName" maxlength="30" placeholder="e.g. Math homework" />
+        </tui-textfield>
+        <app-icon-picker formControlName="icon"></app-icon-picker>
+    </div>
+    @if (form.controls.sessionName.touched && form.controls.sessionName.hasError('required')) {
+    <p class="error">Please give the session a name.</p>
+    }
+
+    <div class="urls">
+        <h3>Allowed websites</h3>
+        <p class="help">While this session is active, every other website is blocked. A page stays accessible if its
+            address contains one of these entries.</p>
+        <div class="url-row">
+            <tui-textfield class="url-field">
+                <label tuiLabel>Add website</label>
+                <input tuiTextfield [formControl]="urlInput" placeholder="github.com, docs.google.com"
+                    (keydown.enter)="$event.preventDefault(); addUrls()" />
+            </tui-textfield>
+            <button tuiIconButton type="button" size="l" appearance="secondary" iconStart="@tui.plus"
+                aria-label="Add website" [disabled]="!urlInput.value.trim()" (click)="addUrls()">
+                Add
+            </button>
+        </div>
+
+        <div class="chips">
+            @for (url of form.controls.urlList.value; track url) {
+            <span tuiChip size="s" class="url-chip">
+                {{ url }}
+                <button type="button" class="chip-remove" [attr.aria-label]="'Remove ' + url" (click)="removeUrl(url)">
+                    <tui-icon icon="@tui.x"></tui-icon>
+                </button>
+            </span>
+            } @empty {
+            <p class="help">No websites yet. Everything will be blocked.</p>
+            }
+        </div>
+    </div>
+
+    <footer class="actions">
+        <button tuiButton type="button" appearance="flat" (click)="cancel()">Cancel</button>
+        <button tuiButton type="submit" [disabled]="form.invalid || saving()">
+            {{ isEdit ? 'Save changes' : 'Create session' }}
+        </button>
+    </footer>
+</form>

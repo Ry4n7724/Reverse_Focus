@@ -1,3 +1,4 @@
+import { commonTestProviders } from '../testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Todo } from './todo';
@@ -8,7 +9,8 @@ describe('Todo', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Todo]
+      imports: [Todo],
+      providers: [...commonTestProviders]
     })
     .compileComponents();
 

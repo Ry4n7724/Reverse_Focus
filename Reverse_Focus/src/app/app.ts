@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { TUI_DARK_MODE, TuiRoot } from "@taiga-ui/core";
 import { BottomNavigation } from "./bottom-navigation/bottom-navigation";
@@ -7,13 +7,14 @@ import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TuiRoot, Navbar, BottomNavigation, BottomNavigation],
+  imports: [RouterOutlet, TuiRoot, Navbar, BottomNavigation],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 
 export class App implements OnInit {
   protected readonly darkMode = inject(TUI_DARK_MODE);
+  protected readonly isBlocker = signal(false);
   private readonly STORAGE_KEY = 'currentRoute';
 
   constructor(private router: Router) { }
@@ -35,12 +36,21 @@ export class App implements OnInit {
       }
     }
 
+    this.updateLayout(this.router.url);
+
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
+      this.updateLayout(event.urlAfterRedirects);
       if (event.urlAfterRedirects !== '/blocker') {
         localStorage.setItem(this.STORAGE_KEY, event.urlAfterRedirects);
       }
     });
+  }
+
+  private updateLayout(url: string) {
+    const blocker = url.startsWith('/blocker');
+    this.isBlocker.set(blocker);
+    document.body.classList.toggle('popup', !blocker);
   }
 }

@@ -1,7 +1,13 @@
 <tui-root [attr.tuiTheme]="darkMode() ? 'dark' : 'light'">
-  <app-navbar></app-navbar>
-  <div class="app-container">
-    <router-outlet />
+  <div class="shell">
+    @if (!isBlocker()) {
+    <app-navbar></app-navbar>
+    }
+    <main class="content">
+      <router-outlet />
+    </main>
+    @if (!isBlocker()) {
     <app-bottom-navigation></app-bottom-navigation>
+    }
   </div>
 </tui-root>

@@ -1,13 +1,122 @@
-.container {
+.page {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
-    height: 100%;
+    gap: 0.75rem;
+    padding: 1rem;
 }
 
-.sessions-list {
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h2 {
+    margin: 0;
+    font: var(--tui-font-heading-5);
+}
+
+.intro {
+    margin: 0;
+    font: var(--tui-font-text-s);
+    color: var(--tui-text-secondary);
+}
+
+.session-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    height: 400px;
-    overflow-y: auto;
+    gap: 0.5rem;
+}
+
+.card {
+    border: 1px solid var(--tui-border-normal);
+    border-radius: var(--tui-radius-l);
+    background: var(--tui-background-elevated);
+    padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+}
+
+.card-main {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.session-icon {
+    display: flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+}
+
+.card-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.125rem;
+    padding: 0.25rem 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+}
+
+.name {
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.meta {
+    font: var(--tui-font-text-s);
+    color: var(--tui-text-secondary);
+}
+
+.active-badge {
+    color: var(--tui-status-positive);
+}
+
+.delete:hover {
+    color: var(--tui-status-negative);
+}
+
+.urls {
+    list-style: none;
+    margin: 0.5rem 0 0.25rem 2.25rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font: var(--tui-font-text-s);
+    color: var(--tui-text-secondary);
+}
+
+.none {
+    font-style: italic;
+    color: var(--tui-text-tertiary);
+}
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem 1rem;
+    color: var(--tui-text-secondary);
+}
+
+.empty p {
+    margin: 0;
+}
+
+.empty-icon {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    opacity: 0.5;
 }

@@ -1,3 +1,4 @@
+import { commonTestProviders } from '../testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WebsiteBlocker } from './website-blocker';
@@ -8,7 +9,8 @@ describe('WebsiteBlocker', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WebsiteBlocker]
+      imports: [WebsiteBlocker],
+      providers: [...commonTestProviders]
     })
     .compileComponents();
 

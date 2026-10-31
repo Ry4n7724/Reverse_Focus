@@ -1,27 +1,42 @@
 <div class="container">
+    <main class="card">
+        <tui-icon icon="@tui.shield" class="shield"></tui-icon>
+        <h1>{{ blockedDomain() }} is blocked</h1>
+        <p class="subtitle">
+            @if (sessionName()) { Your session "{{ sessionName() }}" doesn't include this site. }
+            @else { This page is not on your allowed list. }
+            Take a breath and get back to it.
+        </p>
 
-    @if (showTitle()) {
-    <h1 class="fade-in">Website Blocked</h1>
-    <p class="subtitle fade-in">
-        Take a breath. This page was intentionally paused.
-    </p>
-    }
+        <blockquote class="quote-box" [class.loading]="!quote()">
+            @if (quote(); as q) {
+            <p class="quote">{{ q.q }}</p>
+            <footer class="author">— {{ q.a }}</footer>
+            }
+        </blockquote>
 
-    @if (showQuote()) {
-    <div class="quote-box fade-in">
-        <p class="quote">{{ quote()?.q }}</p>
-        <p class="author">— {{ quote()?.a }}</p>
-    </div>
-    }
+        <button tuiButton type="button" size="l" class="primary" (click)="backToFocus()">Back to focus</button>
 
-    @if (showSearchMode()) {
-    <p class="search-mode-title fade-in">Search Mode</p>
-    <div class="search-mode-box fade-in">
-        <button class="search-mode-button" (click)="startSearchMode(5)">5 min</button>
-        <button class="search-mode-button" (click)="startSearchMode(10)">10 min</button>
-        <button class="search-mode-button" (click)="startSearchMode(15)">15 min</button>
-        <button class="search-mode-button" (click)="startSearchMode(20)">20 min</button>
-    </div>
-    }
-
+        @if (!showSearchOptions()) {
+        <button tuiButton type="button" appearance="flat" size="m" (click)="showSearchOptions.set(true)">
+            I need it for research…
+        </button>
+        } @else {
+        <section class="search-mode" aria-label="Temporary access">
+            <p>Allow all websites for:</p>
+            <div class="durations" role="radiogroup">
+                @for (minutes of durations; track minutes) {
+                <button tuiButton type="button" size="s" role="radio" [attr.aria-checked]="selectedMinutes() === minutes"
+                    [appearance]="selectedMinutes() === minutes ? 'primary' : 'secondary'"
+                    (click)="selectedMinutes.set(minutes)">
+                    {{ minutes }} min
+                </button>
+                }
+            </div>
+            <button tuiButton type="button" appearance="secondary" (click)="startSearchMode()">
+                Unlock for {{ selectedMinutes() }} min
+            </button>
+        </section>
+        }
+    </main>
 </div>

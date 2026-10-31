@@ -1,0 +1,79 @@
+.editor {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+}
+
+h2 {
+    margin: 0;
+    font: var(--tui-font-heading-5);
+}
+
+h3 {
+    margin: 0;
+    font: var(--tui-font-text-m);
+    font-weight: 600;
+}
+
+.name-row,
+.url-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.name-field,
+.url-field {
+    flex: 1;
+}
+
+.urls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.help,
+.error {
+    margin: 0;
+    font: var(--tui-font-text-s);
+    color: var(--tui-text-secondary);
+}
+
+.error {
+    color: var(--tui-status-negative);
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.url-chip {
+    gap: 0.25rem;
+}
+
+.chip-remove {
+    display: inline-flex;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.chip-remove:hover {
+    color: var(--tui-status-negative);
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    position: sticky;
+    bottom: 0;
+    padding: 0.75rem 0;
+    background: var(--tui-background-base);
+}

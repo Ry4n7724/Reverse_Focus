@@ -1,4 +1,44 @@
-<div class="container">
+<div class="page">
+    @if (searchModeActive()) {
+    <section class="search-banner" aria-live="polite">
+        <lucide-icon name="search" class="banner-icon"></lucide-icon>
+        <div class="banner-text">
+            <strong>Search mode is on</strong>
+            <span>Blocking resumes when the timer ends.</span>
+        </div>
+        <app-countdown-component [searchModeEnd]="searchModeEnd()" (ended)="endSearchMode()">
+        </app-countdown-component>
+        <button tuiButton type="button" size="s" appearance="secondary" (click)="endSearchMode()">End now</button>
+    </section>
+    }
+
+    <section class="start">
+        <h2>Start focusing</h2>
+        @if (sessions().length) {
+        <p class="intro">Choose a session. Websites outside its list will be blocked.</p>
+        <ul class="session-list">
+            @for (session of sessions(); track session.id) {
+            <li class="session">
+                <lucide-icon [name]="session.icon" class="session-icon"></lucide-icon>
+                <div class="session-info">
+                    <span class="name">{{ session.sessionName }}</span>
+                    <span class="meta">{{ session.urls.length }} allowed
+                        {{ session.urls.length === 1 ? 'site' : 'sites' }}</span>
+                </div>
+                <button tuiButton type="button" size="s" iconStart="@tui.play" (click)="start(session)">
+                    Start
+                </button>
+            </li>
+            }
+        </ul>
+        } @else if (loaded()) {
+        <div class="empty">
+            <lucide-icon name="target" class="empty-icon"></lucide-icon>
+            <p>Create a session with the websites you need, then start it to block everything else.</p>
+            <a tuiButton routerLink="/create-session">Create your first session</a>
+        </div>
+        }
+    </section>
+
     <app-todo></app-todo>
-    <app-study-sessions></app-study-sessions>
 </div>

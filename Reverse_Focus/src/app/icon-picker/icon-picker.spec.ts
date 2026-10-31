@@ -1,3 +1,4 @@
+import { commonTestProviders } from '../testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IconPicker } from './icon-picker';
@@ -8,7 +9,8 @@ describe('IconPicker', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IconPicker]
+      imports: [IconPicker],
+      providers: [...commonTestProviders]
     })
     .compileComponents();
 

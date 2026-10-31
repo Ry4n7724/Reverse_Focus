@@ -1,7 +1,12 @@
 <nav class="navbar">
     <hgroup class="navbar-brand">
-        <tui-icon icon="@tui.step-back" [style.color]="'var(--tui-background-accent-1)'" />
-        <h1>Focus</h1>
+        <tui-icon icon="@tui.step-back" class="brand-icon" />
+        <h1>Reverse Focus</h1>
     </hgroup>
-    <tui-icon [icon]=" darkMode() ? '@tui.moon' : '@tui.sun'" (click)="darkMode.set(!darkMode())" />
+    <button tuiIconButton type="button" appearance="flat" size="s" class="theme-toggle"
+        [iconStart]="darkMode() ? '@tui.moon' : '@tui.sun'"
+        [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+        (click)="darkMode.set(!darkMode())">
+        Toggle theme
+    </button>
 </nav>
